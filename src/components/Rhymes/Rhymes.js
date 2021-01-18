@@ -16,7 +16,6 @@ const enable = () => {
   mainR = document.querySelector(".Rhymes__main");
   input = document.querySelector(".Rhymes input");
 
-  console.log(input);
   toggleR.addEventListener("click", function () {
     toggleDiv();
   });

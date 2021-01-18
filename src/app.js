@@ -1,8 +1,7 @@
 /**
  * Components and etc
  */
-import { Files, Editor, Rhymes } from "./components/components";
+import { Editor, Rhymes } from "./components/components";
 
-Files();
 Editor();
 Rhymes();
