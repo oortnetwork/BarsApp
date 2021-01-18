@@ -1,0 +1,49 @@
+.Editor {
+  background: $black;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  min-height: 100vh;
+  position: relative;
+  &__main {
+    width: 100%;
+    min-height: 100%;
+    counter-reset: section;
+    position: relative;
+
+    p {
+      counter-increment: section;
+      position: relative;
+      display: block;
+
+      &:before {
+        content: counter(section);
+        position: absolute;
+        right: 100%;
+        width: au to;
+        font-size: 12px;
+        /* line-height: 22px; */
+        opacity: 0.5;
+        padding-right: 10px;
+      }
+      &:nth-child(4n + 4):after {
+        content: "";
+        display: block;
+        width: 100%;
+        border-bottom: 1px solid $white;
+        margin: 5px 0;
+        opacity: 0.2;
+      }
+    }
+  }
+  &__sidebar {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    width: 40px;
+    font-size: 12px;
+    // opacity: 0.5;
+    padding-left: 10px;
+    color: $blue;
+  }
+}

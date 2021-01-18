@@ -1,0 +1,294 @@
+/* ----------------
+This file and all files in the utility folder should only include code that is not project specific
+Put project specific code in the base/init folder
+---------------- */
+
+/* -----
+inview animations Text
+----- */
+@mixin inviewText() {
+	opacity: 0;
+	transform: translate(0, 30px);
+	transition: opacity 0.5s linear, transform 0.75s $easing;
+
+	&.is-inview {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* -----
+Cursor
+----- */
+@mixin cursor($name, $stack: default) {
+	cursor: $stack;
+	cursor: url("#{$img_path}cursors/cursor-#{$name}.png") 20 20, $stack;
+	cursor: -webkit-image-set(
+				url("#{$img_path}cursors/cursor-#{$name}.png") 1x,
+				url("#{$img_path}cursors/cursor-#{$name}@2x.png") 2x
+			)
+			20 20,
+		$stack;
+	.is-safari-lt9 & {
+		cursor: url("#{$img_path}cursors/cursor-#{$name}.png") 20 20, $stack;
+	}
+}
+
+/* -----
+selection style
+----- */
+@mixin selection() {
+	&::-moz-selection {
+		@content;
+	}
+	&::selection {
+		@content;
+	}
+}
+
+/* -----
+Clearfix
+----- */
+@mixin clearfix {
+	&::before,
+	&::after {
+		display: table;
+		content: " ";
+	}
+
+	&::after {
+		display: block;
+		clear: both;
+		height: 1px;
+		margin-top: -1px;
+		visibility: hidden;
+	}
+
+	& {
+		zoom: 1;
+	}
+}
+
+/* -----
+Placeholder style
+----- */
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&::-ms-input-placeholder {
+		@content;
+	}
+}
+
+/* -----
+ScrollBar
+----- */
+@mixin hide-scrollbar {
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* -----
+Box Shadow
+----- */
+@mixin box-shadow($color: #fff) {
+	box-shadow: -1px -0px 0px $color, -0px 1px 0px $color, -2px 1px 0px $color,
+		-1px 2px 0px $color, -3px 2px 0px $color, -2px 3px 0px $color;
+}
+
+/* -----
+underline
+----- */
+@mixin underline($color: $black) {
+	position: relative;
+	display: inline-block;
+	z-index: 1;
+	&:before {
+		content: "";
+		border-bottom: 1px solid $color;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		bottom: 0.05em;
+		z-index: -1;
+	}
+}
+
+/* -----
+underline
+----- */
+
+@mixin underline-simple($color: $black) {
+	position: relative;
+	display: inline-block;
+	// vertical-align: middle;
+	text-decoration: none;
+	overflow: hidden;
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		width: 100%;
+		height: 0.1rem;
+		background-color: currentColor;
+	}
+}
+@mixin underline-link($color: $black, $animation: true) {
+	@include underline-simple;
+
+	&:after {
+		transform: translateX(calc(-50% - 0.1rem));
+		animation: 0.25s $easing 0s trace-out forwards;
+	}
+
+	@include hover {
+		&:after {
+			animation: 0.25s $easing 0s trace-in forwards;
+		}
+	}
+}
+
+@mixin underline-link-two($color: $black, $animation: true) {
+	@include underline-simple;
+
+	&:after {
+		transform: translateX(calc(-50% - 0.1rem));
+		animation: 0.25s $easing 0s trace-in forwards;
+	}
+
+	@include hover {
+		&:after {
+			animation: 0.25s $easing 0s trace-out forwards;
+		}
+	}
+}
+
+/* -----
+hover
+----- */
+@mixin hover {
+	@media (hover: hover) {
+		// transition: color 0.2s linear, border 0.2s linear, background 0.2s linear;
+		&:hover {
+			@content;
+		}
+	}
+}
+@mixin hasHover {
+	@media (hover: hover) {
+		// transition: color 0.2s linear, border 0.2s linear, background 0.2s linear;
+		@content;
+	}
+}
+
+/* -----
+Rotate
+----- */
+@mixin rotate($angle) {
+	-moz-transform: rotate($angle);
+	-ms-transform: rotate($angle);
+	-webkit-transform: rotate($angle);
+	transform: rotate($angle);
+}
+
+/* -----
+Arrow
+----- */
+@mixin arrow(
+	$arrowSize: 10px,
+	$arrowBorderSize: 2px,
+	$arrowBarWidth: 0px,
+	$arrowBarHeight: 10px,
+	$direction: "right"
+) {
+	display: block;
+	height: $arrowBarHeight;
+	position: relative;
+	width: $arrowSize;
+
+	&::after {
+		border-bottom-style: solid;
+		border-bottom-width: $arrowBorderSize;
+		border-bottom-color: currentColor;
+		border-right-style: solid;
+		border-right-width: $arrowBorderSize;
+		border-right-color: currentColor;
+		content: "";
+		display: block;
+		height: $arrowSize;
+		width: $arrowSize;
+		left: 0;
+		position: absolute;
+		top: 2px;
+		@include rotate(225deg);
+	}
+
+	// Arrow Bar
+	&::before {
+		content: "";
+		height: $arrowBarHeight;
+		width: $arrowBarWidth;
+		background: currentColor;
+		position: absolute;
+		top: 1px;
+		left: $arrowSize / 2 - 1;
+	}
+	@if $direction == "top" {
+		@include rotate(0deg);
+	}
+	@if $direction == "right" {
+		@include rotate(90deg);
+	}
+	@if $direction == "bottom" {
+		@include rotate(180deg);
+	}
+	@if $direction == "left" {
+		@include rotate(-90deg);
+	}
+}
+
+@mixin close($size: 20px, $line: 2px) {
+	position: relative;
+	width: $size;
+	height: $size;
+
+	&:before,
+	&:after {
+		position: absolute;
+		left: $size/2;
+		content: " ";
+		height: $size;
+		width: $line;
+		background-color: currentColor;
+	}
+	&:before {
+		transform: rotate(45deg);
+	}
+	&:after {
+		transform: rotate(-45deg);
+	}
+}
+
+/// anims
+
+@keyframes trace-in {
+	0% {
+		transform: translate3d(-101%, 0, 0);
+	}
+	to {
+		transform: translateZ(0);
+	}
+}
+@keyframes trace-out {
+	0% {
+		transform: translateZ(0);
+	}
+	to {
+		transform: translate3d(101%, 0, 0);
+	}
+}

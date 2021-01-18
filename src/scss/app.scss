@@ -1,0 +1,15 @@
+/*
+    Main style file
+*/
+/*
+    Utils style file
+*/
+
+// Utility: functions
+@import "base/utils";
+@import "base/vars";
+@import "base/normalize";
+@import "base/base";
+
+// MAIN STYLES views and components
+@import "../components/components.scss";

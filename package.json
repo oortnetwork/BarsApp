@@ -1,0 +1,46 @@
+{
+  "name": "BarsApp",
+  "description": "Bars App",
+  "version": "1.0.0",
+  "author": "Eurico Sa Fernandes (https://oort.network/)",
+  "repository": {
+    "type": "git",
+    "url": "private"
+  },
+  "license": "private",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "beepbeep": "^1.2.2",
+    "browser-sync": "^2.11.1",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-cache": "^1.0.2",
+    "gulp-filter": "^5.1.0",
+    "gulp-line-ending-corrector": "^1.0.1",
+    "gulp-merge-media-queries": "^0.2.1",
+    "gulp-notify": "^3.0.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.2",
+    "gulp-uglifycss": "^1.0.6",
+    "webpack": "^5.2.0",
+    "webpack-cli": "^4.1.0",
+    "babel-loader": "^8.1.0",
+    "source-map-loader": "^1.1.1",
+    "uglifyjs-webpack-plugin": "^2.2.0"
+  },
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "styles": "gulp styles",
+    "appJS": "gulp appJS"
+  },
+  "dependencies": {
+    "@barba/core": "^2.9.7",
+    "rhymes": "^2.0.0",
+    "syllable": "^4.1.0"
+  }
+}
